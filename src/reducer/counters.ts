@@ -1,29 +1,32 @@
-import Actions from '../action/actionTypes'
+import { ActionTypes, TypeKeys } from '../action/actionTypes';
 
 export type State = {
   counter: number,
 };
 
 const initialState = {
-  count: 0
-}
+  counter: 0
+};
 
 const reducer = (
   state: State = initialState,
-  action: Actions
+  action: ActionTypes
 ): State => {
+  console.log('state and action: ', state, action);
   switch (action.type) {
-    case ActionTypes.Add:
+    case TypeKeys.INC:
       return {
         ...state,
-        count: state.count + 1
-      }
-    case ActionTypes.Set:
+        counter: state.counter + action.payload
+      };
+    case TypeKeys.DEC:
       return {
         ...state,
-        count: action.payload.count
-      }
+        counter: state.counter - action.payload
+      };
+    default:
+      return state;
   }
-}
+};
 
-export default reducer
+export default reducer;

@@ -1,6 +1,10 @@
 import * as React from 'react';
 import Button from './components/Button';
 import MapList from './components/MapList';
+import actions from './action/actionCreator';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { RootState } from './reducer/root';
 
 const item = [
   'apple',
@@ -9,37 +13,48 @@ const item = [
 ];
 
 export interface AppProps {
-  message?: string;
+  counter: number;
+  increment: () => void;
+  decrement: () => void;
 }
-export interface AppState {
-  count: number;
-}
+
+export interface AppState { }
 
 class App extends React.Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
-    this.state = {
-        count: 0
-    };
+    // this.state = {
+    //     count: 0
+    // };
+    console.log('props: ', props );
   }
 
-  increment = () => {
-    this.setState({
-        count: this.state.count + 1
-    });
-  }
+  // increment = () => {
+  //   this.setState({
+  //       count: this.state.count + 1
+  //   });
+  // }
 
   render() {
     return (
         <React.Fragment>
-          <div>{this.props.message}</div>
-          {this.state.count}
-          <Button onClick={this.increment} name={'Increment'}/>
-          <Button onClick={this.increment} name={'Decrement'}/>
-          <MapList items={item} itemRenderer={(e, i) => <div key={i}>{e}</div>}/>
+          <div>{`Counter : ${this.props.counter}`}</div>
+          <Button onClick={this.props.increment} name={'Increment'}/>
+          <Button onClick={this.props.decrement} name={'Decrement'}/>
+          <MapList items={item} render={(e, i) => <div key={i}>{e}</div>}/>
         </React.Fragment>
     );
   }
 }
 
-export default App;
+const s = (state: RootState, props: AppProps) => ({
+  counter: state.counters.counter
+});
+
+const d = (dispatch: Dispatch<RootState>, props: AppProps) => ({
+  increment: () => dispatch(actions.increment(1)),
+  decrement: () => dispatch(actions.decrement(1)),
+});
+
+export default connect<{}, {}, AppProps>
+  (s, d)(App) as React.ComponentClass<{}>;

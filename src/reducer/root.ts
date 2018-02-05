@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux';
 import countersReducer from './counters';
-import RootAction from '../action/actionTypes';
+// import { ActionTypes } from '../action/actionTypes';
 
 interface StoreEnhancerState { }
 
 interface CountersState {
-  counters: number;
+  counter: number;
 }
 
 export interface RootState extends StoreEnhancerState {
   counters: CountersState;
 }
 
-export const rootReducer = combineReducers<RootState, RootAction>({
+export const rootReducer = combineReducers<RootState>({
   counters: countersReducer,
 });

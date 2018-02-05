@@ -1,25 +1,18 @@
-// enum TypeKeys {
-//   INC = 'INCREMENT',
-//   DEC = 'DECREMENT
-// }
-//
-// export interface IncrementAction {
-//   type: TypeKeys.INC;
-//   payload: number;
-// }
-//
-// export interface DecrementAction {
-//   type: TypeKeys.DEC;
-//   payload: number;
-// }
-//
-// type actionTypes =
-//   | IncrementAction
-//   | DecrementAction;
-
-enum actionTypes {
+export enum TypeKeys {
   INC = 'INCREMENT',
   DEC = 'DECREMENT'
 }
 
-export default actionTypes;
+export interface IncrementAction {
+  type: TypeKeys.INC;
+  payload: number;
+}
+
+export interface DecrementAction {
+  type: TypeKeys.DEC;
+  payload: number;
+}
+
+export type ActionTypes =
+  | IncrementAction
+  | DecrementAction;
