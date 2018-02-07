@@ -12,7 +12,6 @@ const reducer = (
   state: State = initialState,
   action: ActionTypes
 ): State => {
-  console.log('state and action: ', state, action);
   switch (action.type) {
     case TypeKeys.INC:
       return {

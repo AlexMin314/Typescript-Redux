@@ -21,27 +21,25 @@ export interface AppProps {
 export interface AppState { }
 
 class App extends React.Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-    // this.state = {
-    //     count: 0
-    // };
-    console.log('props: ', props );
-  }
-
-  // increment = () => {
-  //   this.setState({
-  //       count: this.state.count + 1
-  //   });
-  // }
-
   render() {
     return (
         <React.Fragment>
           <div>{`Counter : ${this.props.counter}`}</div>
-          <Button onClick={this.props.increment} name={'Increment'}/>
-          <Button onClick={this.props.decrement} name={'Decrement'}/>
-          <MapList items={item} render={(e, i) => <div key={i}>{e}</div>}/>
+          <Button
+            onClick={this.props.increment}
+            name={'Increment'}
+            margined={true}
+            primary={true}
+          />
+          <Button
+            onClick={this.props.decrement}
+            name={'Decrement'}
+            margined={true}
+          />
+          <MapList
+            items={item}
+            render={(e, i) => <div key={i}>{e}</div>}
+          />
         </React.Fragment>
     );
   }
