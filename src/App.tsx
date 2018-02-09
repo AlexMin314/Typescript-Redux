@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Button from './components/Button';
 import MapList from './components/MapList';
 import actions from './action/actionCreator';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RootState } from './reducer/root';
+import { BrowserRouter, Route, Switch, RouteComponentProps } from 'react-router-dom';
+import Counter from './containers/Counter';
 
 const item = [
   'apple',
@@ -12,7 +13,7 @@ const item = [
   'pear'
 ];
 
-export interface AppProps {
+export interface AppProps extends RouteComponentProps<any> {
   counter: number;
   increment: () => void;
   decrement: () => void;
@@ -23,24 +24,20 @@ export interface AppState { }
 class App extends React.Component<AppProps, AppState> {
   render() {
     return (
-        <React.Fragment>
-          <div>{`Counter : ${this.props.counter}`}</div>
-          <Button
-            onClick={this.props.increment}
-            name={'Increment'}
-            margined={true}
-            primary={true}
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact={true}
+            path="/counter"
+            render={(props) => <Counter {...{...this.props, ...props}}/>}
           />
-          <Button
-            onClick={this.props.decrement}
-            name={'Decrement'}
-            margined={true}
+          <Route
+            exact={true}
+            path="/map/:id"
+            render={() => <MapList items={item} render={(e, i) => <div key={i}>{e}</div>}/>}
           />
-          <MapList
-            items={item}
-            render={(e, i) => <div key={i}>{e}</div>}
-          />
-        </React.Fragment>
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

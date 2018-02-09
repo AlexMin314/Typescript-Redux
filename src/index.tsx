@@ -9,7 +9,7 @@ import store from './store/store';
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-        <App />
+      <App />
     </ThemeProvider>
   </Provider>
   ,
