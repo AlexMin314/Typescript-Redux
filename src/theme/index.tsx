@@ -1,14 +1,5 @@
 import * as styledComponents from 'styled-components';
-
-const {
-  default: styled,
-  css,
-  injectGlobal,
-  keyframes,
-  ThemeProvider
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<
-    ThemeInterface
-  >;
+import { ThemedStyledComponentsModule } from 'styled-components';
 
 export interface ThemeInterface {
   primaryColor: string;
@@ -17,6 +8,16 @@ export interface ThemeInterface {
 export const theme = {
   primaryColor: '#ff6c7a'
 };
+
+const {
+  default: styled,
+  css,
+  injectGlobal,
+  keyframes,
+  ThemeProvider
+} = styledComponents as ThemedStyledComponentsModule<
+    ThemeInterface
+  >;
 
 export { css, injectGlobal, keyframes, ThemeProvider };
 

@@ -23,6 +23,7 @@ export interface AppState { }
 
 class App extends React.Component<AppProps, AppState> {
   render() {
+    // console.log('App : ', this.props);
     return (
       <BrowserRouter>
         <Switch>
