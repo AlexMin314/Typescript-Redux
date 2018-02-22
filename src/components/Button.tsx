@@ -11,7 +11,7 @@ interface ButtonProps {
   onClick?: () => void;
   margined?: boolean;
   primary?: boolean;
-}ª
+}
 
 const StyledButton = styled.button`
   background: ${(props: ButtonProps): any => props.primary && props.theme && props.theme.primaryColor};
